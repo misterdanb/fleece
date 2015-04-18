@@ -7,14 +7,11 @@ extends RigidBody2D
 
 var acc_x = 20
 var speed_x_max = 100
-var acc_y = 20
-var speed_y_max = 80
-
-var bumping_mode = null
+var flying_mode = null
 
 func _ready():
 	# Initialization here
-	bumping_mode = preload("res://character_bumping.scn")
+	flying_mode = preload("res://character_flying.scn")
 	set_fixed_process(true)
 	pass
 
@@ -25,13 +22,11 @@ func _fixed_process(delta):
 		set_linear_velocity(vec2(current_vel.x + acc_x, current_vel.y))
 	elif Input.is_action_pressed("left") and current_vel.x > -speed_x_max:
 		set_linear_velocity(vec2(current_vel.x - acc_x, current_vel.y))
-	if Input.is_action_pressed("fly") and current_vel.y > -speed_y_max:
-		set_linear_velocity(vec2(current_vel.x, current_vel.y - acc_y))
-		set_rot(0)
-		set_angular_velocity(0.0)
 	if Input.is_action_pressed("mode_toggle") and get_node("/root/root_node").get("transform_time") <= 0:
 		get_node("/root/root_node").set("transform_time", 5.0)
-		var bm = bumping_mode.instance()
-		bm.set_pos(get_pos())
-		get_parent().add_child(bm)
+		var fm = flying_mode.instance()
+		fm.set_pos(get_pos())
+		get_parent().add_child(fm)
 		self.queue_free()
+	set_rot(0)
+	set_angular_velocity(0.0)
