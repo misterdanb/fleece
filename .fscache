@@ -1,0 +1,10 @@
+::res://::1429369461
+character_flying.scn::PackedScene::1429369461::
+icon.png::ImageTexture::1429366150::
+level01.scn::PackedScene::1429369455::
+::res://res::1429366150
+ground.png::ImageTexture::1429366150::
+player_bumping.png::ImageTexture::1429366150::
+player_flying.png::ImageTexture::1429366150::
+::res://scripts::1429369465
+player_flying.gd::GDScript::1429369465::
