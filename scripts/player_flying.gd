@@ -15,6 +15,7 @@ var bumping_mode = null
 func _ready():
 	# Initialization here
 	bumping_mode = preload("res://character_bumping.scn")
+	set_contact_monitor(true)
 	set_fixed_process(true)
 	pass
 
