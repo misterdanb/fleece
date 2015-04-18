@@ -14,4 +14,6 @@ func _ready():
 
 func _fixed_process(delta):
 	get_node("/root/root_node/Camera").set_pos(vec2(get_node("/root/root_node/Camera").get_pos().x + (camera_scroll_speed * delta), get_node("/root/root_node/Camera").get_pos().y))
+	get_node("/root/root_node/ground/repeat").set_region_rect(Rect2(0,0,get_node("/root/root_node/Camera").get_pos().x+1000,152))
+	get_node("/root/root_node/ground/coll").set_c
 	#get_node("die_wand").set_rot(0)
