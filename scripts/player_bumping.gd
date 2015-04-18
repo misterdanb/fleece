@@ -15,6 +15,8 @@ func _ready():
 	flying_mode = preload("res://character_flying.scn")
 	get_node("AnimationPlayer").play("inflate")
 	set_fixed_process(true)
+	add_to_group("Player")
+	add_to_group("player")
 	pass
 
 func _fixed_process(delta):

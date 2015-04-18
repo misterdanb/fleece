@@ -17,10 +17,14 @@ func _ready():
 	bumping_mode = preload("res://character_bumping.scn")
 	set_contact_monitor(true)
 	set_fixed_process(true)
+	add_to_group("Player")
+	add_to_group("player")
 	pass
 
 func _fixed_process(delta):
 	get_node("/root/root_node").set("transform_time", get_node("/root/root_node").get("transform_time")-delta)
+	
+	
 	var current_vel = get_linear_velocity()
 	if Input.is_action_pressed("right") and current_vel.x < speed_x_max:
 		set_linear_velocity(vec2(current_vel.x + acc_x, current_vel.y))
@@ -33,7 +37,8 @@ func _fixed_process(delta):
 		set_angular_velocity(0.0)
 	else:
 		get_node("AnimationPlayer")
-	if Input.is_action_pressed("mode_toggle") and get_node("/root/root_node").get("transform_time") <= 0:
+	if Input.is_action_pressed("mode_toggle") and get_node("/root/root_node").get("transform_time") <= 0 and get_node("/root/root_node/Camera/gui/transform_points_progress").get_value() >= 100:
+		get_node("/root/root_node/Camera/gui/transform_points_progress").set_value(0)
 		get_node("/root/root_node").set("transform_time", 2.0)
 		var bm = bumping_mode.instance()
 		bm.set_pos(get_pos())
