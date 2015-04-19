@@ -9,6 +9,8 @@ var acc_x = 20
 var speed_x_max = 100
 var flying_mode = null
 var deflate = false
+var time_inflated = 0.0
+var max_inflated_time = 5.0
 
 func _ready():
 	# Initialization here
@@ -19,9 +21,11 @@ func _ready():
 	add_to_group("Player")
 	add_to_group("player")
 	add_to_group("player_bumping")
+	var time_inflated = 0.0
 	pass
 
 func _fixed_process(delta):
+	time_inflated += delta
 	if deflate and !get_node("AnimationPlayer").is_playing():
 		get_node("/root/root_node").set("transform_time", 2.0)
 		var fm = flying_mode.instance()
@@ -34,7 +38,7 @@ func _fixed_process(delta):
 		set_linear_velocity(vec2(current_vel.x + acc_x, current_vel.y))
 	elif Input.is_action_pressed("left") and current_vel.x > -speed_x_max:
 		set_linear_velocity(vec2(current_vel.x - acc_x, current_vel.y))
-	if Input.is_action_pressed("mode_toggle") and get_node("/root/root_node").get("transform_time") <= 0:
+	if time_inflated >= max_inflated_time and !deflate:
 		deflate = true
 		get_node("AnimationPlayer").play("deflate")
 #	set_rot(0)

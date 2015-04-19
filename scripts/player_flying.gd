@@ -6,7 +6,7 @@ extends RigidBody2D
 # var b="textvar"
 
 var acc_x = 20
-var speed_x_max = 100
+var speed_x_max = 200
 var acc_y = 20
 var speed_y_max = 80
 
@@ -26,6 +26,8 @@ func _ready():
 
 func _fixed_process(delta):
 	get_node("/root/root_node").set("transform_time", get_node("/root/root_node").get("transform_time")-delta)
+	
+	speed_x_max = get_node("/root/root_node").get("camera_scroll_speed")*2
 	
 	if get_node("/root/root_node/Camera/gui/hitpoints").get_value() <= 0:
 		dead = true
