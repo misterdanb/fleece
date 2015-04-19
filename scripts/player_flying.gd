@@ -31,7 +31,7 @@ func _fixed_process(delta):
 	speed_x_max = get_node("/root/root_node").get("camera_scroll_speed")*2
 	
 	if get_node("/root/root_node/Camera/gui/hitpoints").get_value() <= 0 and !dead:
-		#get_node("../SamplePlayer2D").play("player_dying")
+		get_node("../SamplePlayer2D").play("player_dying")
 		get_node("/root/root_node/Camera/gui/game_over").show()
 		dead = true
 		print("Game Over...")
