@@ -22,6 +22,7 @@ func _ready():
 	add_to_group("Player")
 	add_to_group("player")
 	add_to_group("player_flying")
+	get_node("/root/root_node/Camera/gui/game_over").hide()
 	pass
 
 func _fixed_process(delta):
@@ -31,6 +32,7 @@ func _fixed_process(delta):
 	
 	if get_node("/root/root_node/Camera/gui/hitpoints").get_value() <= 0 and !dead:
 		get_node("../SamplePlayer2D").play("player_dying")
+		get_node("/root/root_node/Camera/gui/game_over").show()
 		dead = true
 		print("Game Over...")
 	
