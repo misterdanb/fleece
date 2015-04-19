@@ -18,6 +18,7 @@ func _ready():
 	set_fixed_process(true)
 	add_to_group("Player")
 	add_to_group("player")
+	add_to_group("player_bumping")
 	pass
 
 func _fixed_process(delta):
