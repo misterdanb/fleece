@@ -6,7 +6,7 @@ extends RigidBody2D
 # var b="textvar"
 
 var activated = false
-var coin_value = 10
+var coin_value = 5
 
 func _integrate_forces(state):
 	if state.get_contact_count() > 0:
@@ -14,6 +14,7 @@ func _integrate_forces(state):
 			var contact_object = state.get_contact_collider_object(i)
 			if ("player" in contact_object.get_groups() or "Player" in contact_object.get_groups()) and !activated:
 				activated = true
+				get_node("../SamplePlayer2D").play("coin")
 				if get_node("/root/root_node/Camera/gui/transform_points_progress").get_value() <= 100-coin_value:
 					get_node("/root/root_node/Camera/gui/transform_points_progress").set_value(get_node("/root/root_node/Camera/gui/transform_points_progress").get_value()+coin_value)
 					self.queue_free()

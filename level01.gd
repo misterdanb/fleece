@@ -7,12 +7,14 @@ extends Node
 export var transform_time = 0.0
 var camera_scroll_speed = 100
 var coin_beginning = 2000
+var next_coin = coin_beginning
 var coin_distance = 200
 var coin_template = null
 
 var time_passed = 0.0
 
 var enemy_beginning = 700
+var next_enemy = enemy_beginning
 var enemy_distance = 400
 var enemy_template = null
 
@@ -33,13 +35,16 @@ func _fixed_process(delta):
 	get_node("/root/root_node/ground/repeat").set_region_rect(Rect2(0,0,get_node("/root/root_node/Camera").get_pos().x+1000,152))
 	
 	# Zufallsmünzen
-	if get_node("/root/root_node/Camera").get_pos().x + 1000 >= coin_beginning and int(get_node("/root/root_node/Camera").get_pos().x) % coin_distance == 0:
+	#if get_node("/root/root_node/Camera").get_pos().x + 1000 >= coin_beginning and int(get_node("/root/root_node/Camera").get_pos().x) % coin_distance == 0:
+	if get_node("/root/root_node/Camera").get_pos().x >= next_coin:
 		var newcoin = coin_template.instance()
 		newcoin.set_pos(vec2(get_node("/root/root_node/Camera").get_pos().x + rand_range(950, 1050), rand_range(60, 450)))
 		add_child(newcoin)
+		next_coin += coin_distance
 		
 	# Zufallsgegner
-	if get_node("/root/root_node/Camera").get_pos().x + 1000 >= enemy_beginning and int(get_node("/root/root_node/Camera").get_pos().x) % enemy_distance == 0:
+	#if get_node("/root/root_node/Camera").get_pos().x + 1000 >= enemy_beginning and int(get_node("/root/root_node/Camera").get_pos().x) % enemy_distance == 0:
+	if get_node("/root/root_node/Camera").get_pos().x >= next_enemy:
 		var newenemy = enemy_template.instance()
 		var enemyY = rand_range(60, 450)
 		newenemy.set_pos(vec2(get_node("/root/root_node/Camera").get_pos().x + rand_range(950, 1050), enemyY))
@@ -48,3 +53,4 @@ func _fixed_process(delta):
 			newsecondenemy.set_pos(vec2(get_node("/root/root_node/Camera").get_pos().x + rand_range(950, 1050), 60))
 			add_child(newsecondenemy)
 		add_child(newenemy)
+		next_enemy += enemy_distance

@@ -13,9 +13,11 @@ func _integrate_forces(state):
 		for i in range (state.get_contact_count()):
 			var contact_object = state.get_contact_collider_object(i)
 			if "player_flying" in contact_object.get_groups() and !touched:
+				get_node("../SamplePlayer2D").play("damage")
 				touched = true
 				get_node("/root/root_node/Camera/gui/hitpoints").set_value(get_node("/root/root_node/Camera/gui/hitpoints").get_value()-contact_damage)
 			elif "player_bumping" in contact_object.get_groups():
+				get_node("../SamplePlayer2D").play("enemy_dying")
 				self.queue_free()
 
 #func _fixed_process(delta):
