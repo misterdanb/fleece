@@ -12,6 +12,7 @@ var deflate = false
 
 func _ready():
 	# Initialization here
+	get_node("../SamplePlayer2D").play("blop")
 	flying_mode = preload("res://character_flying.scn")
 	get_node("AnimationPlayer").play("inflate")
 	set_fixed_process(true)
