@@ -14,6 +14,8 @@ func _integrate_forces(state):
 			var contact_object = state.get_contact_collider_object(i)
 			if "player_flying" in contact_object.get_groups() and !touched:
 				get_node("../SamplePlayer2D").play("damage")
+				if not get_node("/root/root_node/player_flying/PlayerBody") == null:
+					get_node("/root/root_node/player_flying/PlayerBody").set_linear_velocity((get_node("/root/root_node/player_flying/PlayerBody").get_pos() - get_parent().get_pos()).normalized() * 280)
 				touched = true
 				get_node("/root/root_node/Camera/gui/hitpoints").set_value(get_node("/root/root_node/Camera/gui/hitpoints").get_value()-contact_damage)
 			elif "player_bumping" in contact_object.get_groups():
