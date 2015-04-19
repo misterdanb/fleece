@@ -1,9 +1,9 @@
-::res://::1429433526
+::res://::1429433831
 character_bumping.scn::PackedScene::1429429725::
-character_flying.scn::PackedScene::1429433506::
+character_flying.scn::PackedScene::1429433831::
 coin.scn::PackedScene::1429431124::
 enemy.scn::PackedScene::1429431822::
-gui.scn::PackedScene::1429433526::
+gui.scn::PackedScene::1429433817::
 icon.png::ImageTexture::1429366150::
 level01.gd::GDScript::1429430386::
 level01.scn::PackedScene::1429430384::
@@ -25,10 +25,10 @@ coin.wav::Sample::1429430732::
 damage.wav::Sample::1429430850::
 enemy_dying.wav::Sample::1429431737::
 player_dying.wav::Sample::1429431739::
-::res://scripts::1429433581
+::res://scripts::1429435575
 coin.gd::GDScript::1429431125::
 enemy.gd::GDScript::1429431823::
-gui.gd::GDScript::1429433547::
+gui.gd::GDScript::1429433817::
 level.gd::GDScript::1429430386::
 player_bumping.gd::GDScript::1429429727::
-player_flying.gd::GDScript::1429433581::
+player_flying.gd::GDScript::1429435575::
